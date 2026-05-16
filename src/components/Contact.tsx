@@ -6,15 +6,19 @@ import { cn } from "@/src/lib/utils";
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Capture form data immediately before any async delay
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
     // Simulate a brief delay for professionalism
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    const formData = new FormData(e.currentTarget);
     const name = formData.get("name");
     const email = formData.get("email");
     const phone = formData.get("phone");
@@ -23,15 +27,16 @@ export default function Contact() {
     const maintenance = formData.get("maintenance");
     const message = formData.get("message");
     
-    const whatsappMessage = `*New Inquiry from Code Crafters Website*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Package:* ${pkg}%0A*Logo Design:* ${logo}%0A*Maintenance:* ${maintenance}%0A*Requirements:* ${message}`;
-    const whatsappUrl = `https://wa.me/918790351970?text=${whatsappMessage}`;
+    const whatsappMessage = `*New Inquiry from Code Crafters Website*%0A%0A*Name:* ${encodeURIComponent(name as string)}%0A*Email:* ${encodeURIComponent(email as string)}%0A*Phone:* ${encodeURIComponent(phone as string)}%0A*Package:* ${encodeURIComponent(pkg as string)}%0A*Logo Design:* ${encodeURIComponent(logo as string)}%0A*Maintenance:* ${encodeURIComponent(maintenance as string)}%0A*Requirements:* ${encodeURIComponent(message as string)}`;
+    const url = `https://wa.me/918790351970?text=${whatsappMessage}`;
     
+    setWhatsappUrl(url);
     setIsSubmitting(false);
     setIsSent(true);
     
-    // Open WhatsApp after showing success
+    // Attempt automatic redirect (might be blocked, so we provide a manual button too)
     setTimeout(() => {
-      window.open(whatsappUrl, "_blank");
+      window.open(url, "_blank");
     }, 1000);
   };
 
@@ -212,15 +217,37 @@ export default function Contact() {
                 key="success"
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                className="flex flex-col items-center justify-center py-20 text-center"
+                className="flex flex-col items-center justify-center py-10 text-center"
               >
                 <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mb-8">
                   <CheckCircle className="w-10 h-10 text-accent animate-pulse" />
                 </div>
-                <h3 className="text-3xl font-display font-medium mb-4">Message Sent.</h3>
-                <p className="text-white/40 font-light max-w-xs mx-auto">
-                  Redirecting you to WhatsApp to complete your inquiry...
+                <h3 className="text-3xl font-display font-medium mb-4">Inquiry sent!</h3>
+                <p className="text-white/40 font-light max-w-xs mx-auto mb-10">
+                  Your inquiry has been received. We will contact you within 24 business hours. In the meantime, feel free to <a href="#services" className="text-accent hover:underline">explore our services page</a>.
                 </p>
+                
+                <div className="flex flex-col gap-4 w-full">
+                  <motion.a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-[0.2em] flex items-center justify-center gap-2"
+                  >
+                    Open WhatsApp
+                  </motion.a>
+                  
+                  <motion.button
+                    whileHover={{ opacity: 0.8 }}
+                    onClick={() => setIsSent(false)}
+                    className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/20 py-4"
+                  >
+                    Go Back / Edit Inquiry
+                  </motion.button>
+                </div>
+
                 <motion.div 
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
