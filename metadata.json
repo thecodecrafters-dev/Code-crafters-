@@ -1,0 +1,8 @@
+{
+  "name": "Code Crafters Agency",
+  "description": "Premium web development agency for modern businesses, featuring futuristic animations and glassmorphism styling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
