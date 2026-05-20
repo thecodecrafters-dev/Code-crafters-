@@ -9,6 +9,7 @@ import Navbar from "@/src/components/Navbar";
 import Hero from "@/src/components/Hero";
 import About from "@/src/components/About";
 import Services from "@/src/components/Services";
+import ConceptWork from "@/src/components/ConceptWork";
 import Pricing from "@/src/components/Pricing";
 import CTA from "@/src/components/CTA";
 import Contact from "@/src/components/Contact";
@@ -43,7 +44,7 @@ export default function App() {
 
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent z-[60] origin-[0%]"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-white/30 via-white to-white/30 z-[60] origin-[0%] shadow-[0_0_10px_rgba(255,255,255,0.8)]"
         style={{ scaleX }}
       />
 
@@ -62,6 +63,7 @@ export default function App() {
         </motion.div>
 
         <Services />
+        <ConceptWork />
         <Pricing />
         <CTA />
         <Contact />
@@ -77,14 +79,26 @@ export default function App() {
 
 function CursorGlow() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hasHover, setHasHover] = useState(false);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover)");
+    setHasHover(mediaQuery.matches);
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    if (mediaQuery.matches) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
+
+  if (!hasHover) return null;
 
   return (
     <div

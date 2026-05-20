@@ -28,17 +28,17 @@ export default function LoadingScreen() {
         />
       </motion.div>
       
-      <div className="mt-24 w-48 h-[1px] bg-white/5 relative overflow-hidden">
+      <div className="mt-24 w-48 h-[2px] bg-white/[0.03] relative overflow-hidden rounded-full shadow-[0_0_12px_rgba(255,255,255,0.15)]">
         <motion.div
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
           transition={{ 
-            duration: 2, 
+            duration: 1.8, 
             repeat: Infinity, 
             ease: "easeInOut",
-            repeatDelay: 0.5
+            repeatDelay: 0.3
           }}
-          className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white to-transparent"
         />
       </div>
       
