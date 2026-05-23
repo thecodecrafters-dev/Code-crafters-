@@ -163,6 +163,7 @@ export default function ConceptWork() {
   const [activeCategory, setActiveCategory] = useState<"all" | "fintech" | "spatial" | "brand" | "health">("all");
   const [selectedProject, setSelectedProject] = useState<string>("steel-alpha");
   const [isSandboxActive, setIsSandboxActive] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Interaction State for "Aether OS" mock
   const [spatialGrid, setSpatialGrid] = useState(true);
@@ -196,13 +197,22 @@ export default function ConceptWork() {
   };
 
   const handleModeChange = (mode: "live" | "concepts") => {
+    setIsLoading(true);
     setPortfolioMode(mode);
     setIsSandboxActive(false);
     if (mode === "live") {
       setSelectedProject(LIVE_PROJECTS[0].id);
     } else {
-      setSelectedProject(CONCEPT_PROJECTS[0].id);
+      const matching = activeCategory === "all" ? CONCEPT_PROJECTS : CONCEPT_PROJECTS.filter(p => p.category === activeCategory);
+      if (matching.length > 0) {
+        setSelectedProject(matching[0].id);
+      } else {
+        setSelectedProject(CONCEPT_PROJECTS[0].id);
+      }
     }
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 550);
   };
 
   return (
@@ -261,11 +271,15 @@ export default function ConceptWork() {
               <button
                 key={cat}
                 onClick={() => {
+                  setIsLoading(true);
                   setActiveCategory(cat);
                   const matching = cat === "all" ? CONCEPT_PROJECTS : CONCEPT_PROJECTS.filter(p => p.category === cat);
                   if (matching.length > 0) {
                     setSelectedProject(matching[0].id);
                   }
+                  setTimeout(() => {
+                    setIsLoading(false);
+                  }, 450);
                 }}
                 className={`text-[10px] uppercase tracking-[0.2em] font-bold py-2 px-3.5 rounded-full border transition-all duration-300 ${
                   activeCategory === cat
@@ -285,7 +299,42 @@ export default function ConceptWork() {
           {/* Left Cards List */}
           <div className="lg:col-span-12 xl:col-span-5 flex flex-col gap-4">
             <AnimatePresence mode="popLayout">
-              {portfolioMode === "live" ? (
+              {isLoading ? (
+                [1, 2, 3].map((idx) => (
+                  <motion.div
+                    key={`skeleton-${idx}`}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.18, delay: idx * 0.04 }}
+                    className="relative p-5 sm:p-8 border border-white/5 rounded-2xl bg-white/[0.005] overflow-hidden flex flex-col gap-4"
+                  >
+                    {/* Top client line & category pill shimmer */}
+                    <div className="flex items-start justify-between">
+                      <div className="space-y-2.5 w-2/3">
+                        <div className="h-3 w-1/2 rounded bg-white/5 shimmer" />
+                        <div className="h-6 w-3/4 rounded bg-white/10 shimmer" />
+                      </div>
+                      <div className="h-5 w-14 rounded bg-white/10 shimmer" />
+                    </div>
+
+                    {/* Description lines shimmer */}
+                    <div className="space-y-2 mt-2">
+                      <div className="h-3 w-full rounded bg-white/5 shimmer" />
+                      <div className="h-3 w-5/6 rounded bg-white/5 shimmer" />
+                    </div>
+
+                    {/* Footer framework badge array & Action button shimmer */}
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-4">
+                      <div className="flex gap-2">
+                        <div className="h-4 w-12 rounded bg-white/5 shimmer" />
+                        <div className="h-4 w-10 rounded bg-white/5 shimmer" />
+                      </div>
+                      <div className="h-4 w-28 rounded bg-white/5 shimmer" />
+                    </div>
+                  </motion.div>
+                ))
+              ) : portfolioMode === "live" ? (
                 LIVE_PROJECTS.map((project) => {
                   const isSelected = selectedProject === project.id;
                   return (

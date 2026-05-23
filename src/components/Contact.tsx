@@ -28,7 +28,7 @@ export default function Contact() {
     const message = formData.get("message");
     
     const whatsappMessage = `*New Inquiry from Code Crafters Website*%0A%0A*Name:* ${encodeURIComponent(name as string)}%0A*Email:* ${encodeURIComponent(email as string)}%0A*Phone:* ${encodeURIComponent(phone as string)}%0A*Package:* ${encodeURIComponent(pkg as string)}%0A*Logo Design:* ${encodeURIComponent(logo as string)}%0A*Maintenance:* ${encodeURIComponent(maintenance as string)}%0A*Requirements:* ${encodeURIComponent(message as string)}`;
-    const url = `https://wa.me/918790351970?text=${whatsappMessage}`;
+    const url = `https://wa.me/917993860843?text=${whatsappMessage}`;
     
     setWhatsappUrl(url);
     setIsSubmitting(false);
@@ -56,9 +56,9 @@ export default function Contact() {
             
             <div className="space-y-12 mb-16">
               {[
-                { label: "Email", value: "code.crafters018@gmail.com" },
-                { label: "Phone", value: "+91 8790351970" },
-                { label: "Base", value: "India" }
+                { label: "Email", value: "code.crafters018@gmail.com", href: "mailto:code.crafters018@gmail.com" },
+                { label: "Phone & WhatsApp", value: "+91 7993860843", href: "https://wa.me/917993860843" },
+                { label: "Base", value: "India", href: null }
               ].map((info, idx) => (
                 <motion.div 
                   key={idx}
@@ -69,7 +69,18 @@ export default function Contact() {
                   className="flex flex-col gap-2"
                 >
                   <p className="text-[10px] uppercase tracking-widest text-white/20 font-bold">{info.label}</p>
-                  <p className="text-2xl font-light hover:text-accent transition-colors cursor-pointer">{info.value}</p>
+                  {info.href ? (
+                    <a 
+                      href={info.href} 
+                      target={info.href.startsWith("http") ? "_blank" : undefined}
+                      rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="text-2xl font-light hover:text-accent transition-colors cursor-pointer w-fit block"
+                    >
+                      {info.value}
+                    </a>
+                  ) : (
+                    <p className="text-2xl font-light hover:text-accent transition-colors cursor-pointer w-fit">{info.value}</p>
+                  )}
                 </motion.div>
               ))}
             </div>
