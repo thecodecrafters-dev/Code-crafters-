@@ -33,10 +33,10 @@ export default function Logo({ className }: LogoProps) {
           
           {/* CC Emblem - High-end Geometric Minimalist */}
           <div className="relative flex items-center justify-center translate-x-[0.5px]">
-            <span className="text-[18px] md:text-[22px] font-display font-medium tracking-[-0.15em] text-white leading-none">
+            <span className="text-[18px] md:text-[22px] font-oswald font-medium tracking-[0.05em] text-white leading-none">
               C
             </span>
-            <span className="text-[17px] md:text-[21px] font-display font-extralight tracking-[-0.15em] text-white/20 -ml-[4px] md:-ml-[5px] leading-none">
+            <span className="text-[17px] md:text-[21px] font-oswald font-light tracking-[0.05em] text-white/20 -ml-[2px] leading-none">
               C
             </span>
           </div>
@@ -62,7 +62,7 @@ export default function Logo({ className }: LogoProps) {
               hidden: { y: 20, opacity: 0 },
               show: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] } }
             }}
-            className="text-[14px] md:text-[18px] font-display font-medium tracking-[0.1em] text-white uppercase leading-none"
+            className="text-[14px] md:text-[18px] font-oswald font-medium tracking-[0.1em] text-white uppercase leading-none"
           >
             Code
           </motion.span>
@@ -71,14 +71,14 @@ export default function Logo({ className }: LogoProps) {
               hidden: { scaleX: 0, opacity: 0 },
               show: { scaleX: 1, opacity: 1, transition: { duration: 0.8, delay: 0.4, ease: [0.23, 1, 0.32, 1] } }
             }}
-            className="w-1.5 md:w-3 h-[1px] bg-white/20 mx-1.5 md:mx-3 origin-left" 
+            className="w-1 md:w-2 h-[1px] bg-white/20 mx-1 md:mx-2 origin-left" 
           />
           <motion.span 
             variants={{
               hidden: { y: 20, opacity: 0 },
               show: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.3, ease: [0.23, 1, 0.32, 1] } }
             }}
-            className="text-[14px] md:text-[18px] font-display font-extralight tracking-[0.25em] text-white/40 uppercase leading-none"
+            className="text-[14px] md:text-[18px] font-oswald font-light tracking-[0.25em] text-white/40 uppercase leading-none"
           >
             Crafters
           </motion.span>

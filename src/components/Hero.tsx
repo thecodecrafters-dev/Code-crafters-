@@ -19,7 +19,7 @@ export default function Hero() {
     <section 
       ref={containerRef}
       id="home" 
-      className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center py-24 px-4 sm:px-8 md:px-12 lg:px-16 overflow-hidden"
     >
       {/* Parallax Background Elements */}
       <motion.div 
@@ -35,13 +35,13 @@ export default function Hero() {
         className="absolute top-[40%] right-[10%] w-24 h-24 bg-gradient-to-br from-white/5 to-transparent rounded-2xl blur-xl -z-0 pointer-events-none" 
       />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        {/* Left Content */}
+      <div className="w-full max-w-7xl mx-auto flex flex-col items-start justify-center">
+        {/* Left-Aligned Content */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center z-10 mx-auto"
+          className="text-left z-10 w-full"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 30 }}
@@ -52,15 +52,15 @@ export default function Hero() {
             <span>Bespoke Digital Agency</span>
           </motion.div>
           
-          <div className="overflow-hidden mb-8">
+          <div className="py-2 mb-6">
             <motion.h1 
-              initial={{ y: "150%" }}
-              animate={{ y: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
-              className="text-5xl md:text-8xl lg:text-9xl font-display font-medium tracking-tight leading-[0.9] text-white"
+              className="text-white select-none flex flex-col items-start leading-[0.85] w-full"
             >
-              We craft <br />
-              <span className="opacity-40">digital future.</span>
+              <span className="font-teko font-light uppercase text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.2em] text-white/50 mb-2">We craft</span>
+              <span className="font-bebas font-normal uppercase text-5xl sm:text-7xl md:text-[9rem] lg:text-[11rem] xl:text-[12rem] tracking-tight text-white break-words w-full">digital future.</span>
             </motion.h1>
           </div>
 
@@ -68,13 +68,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-row items-center gap-4 mb-12"
           >
             <motion.button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 rounded-full bg-white text-black font-bold uppercase text-[10px] tracking-widest transition-all shadow-lg"
+              className="px-8 py-3.5 rounded-full bg-white text-black font-bold uppercase text-[10px] tracking-widest transition-all shadow-lg hover:bg-white/90 duration-300"
             >
               Inquire Now
             </motion.button>
@@ -92,14 +92,14 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1, ease: [0.23, 1, 0.32, 1] }}
-            className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto leading-relaxed font-light"
+            className="text-lg md:text-xl text-white/40 max-w-2xl leading-relaxed font-light"
           >
             High-performance web experiences strictly designed for industry leaders. 
             No compromises. Just excellence.
           </motion.p>
 
-          <div className="mt-20 flex flex-col items-center gap-4 opacity-20">
-             <div className="w-px h-20 bg-gradient-to-b from-white to-transparent" />
+          <div className="mt-20 flex flex-col items-start gap-4 opacity-20">
+             <div className="w-px h-20 bg-gradient-to-b from-white to-transparent animate-pulse-slow" />
           </div>
         </motion.div>
 

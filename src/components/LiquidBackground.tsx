@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { SmokeBackground } from "@/src/components/ui/spooky-smoke-animation";
 
 export default function LiquidBackground() {
   const [mounted, setMounted] = useState(false);
@@ -12,6 +13,12 @@ export default function LiquidBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
+      {/* Global WebGL Smoke Background */}
+      <div className="absolute inset-0 opacity-65 pointer-events-none">
+        <SmokeBackground smokeColor="#3b82f6" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 pointer-events-none" />
+      </div>
+
       {/* Primary Glows - More subtle */}
       <motion.div
         animate={{

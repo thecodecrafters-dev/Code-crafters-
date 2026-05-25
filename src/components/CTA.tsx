@@ -3,7 +3,7 @@ import { Sparkles, Send } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="py-24 px-6 relative overflow-hidden group">
+    <section className="py-24 px-6 relative bg-black/40 backdrop-blur-md border-b border-white/[0.03] overflow-hidden group">
       {/* Background atmospheric light */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[150px] -z-10 group-hover:bg-accent/10 transition-colors duration-1000" />
       

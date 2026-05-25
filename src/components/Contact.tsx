@@ -41,7 +41,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative">
+    <section id="contact" className="py-24 px-6 relative bg-black/55 backdrop-blur-md border-b border-white/[0.03]">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
         {/* Left Side: Info */}
         <div className="flex flex-col justify-center">

@@ -49,7 +49,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 relative">
+    <section id="about" className="py-24 px-6 relative bg-black/50 backdrop-blur-md border-y border-white/[0.03]">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial="hidden"

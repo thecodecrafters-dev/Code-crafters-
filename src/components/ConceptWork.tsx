@@ -216,7 +216,7 @@ export default function ConceptWork() {
   };
 
   return (
-    <section id="work" className="py-16 md:py-24 px-4 sm:px-6 relative border-t border-white/5 bg-black/40 overflow-hidden">
+    <section id="work" className="py-16 md:py-24 px-4 sm:px-6 relative border-t border-white/5 bg-black/65 backdrop-blur-md overflow-hidden">
       {/* Background radial accent glow */}
       <div className="absolute top-1/3 right-10 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[140px] -z-10 pointer-events-none" />
       <div className="absolute bottom-1/3 left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px] -z-10 pointer-events-none" />
