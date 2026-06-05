@@ -84,6 +84,7 @@ const smallPackages = [
 
 export default function Pricing() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [clickedCard, setClickedCard] = useState<number | null>(null);
 
   return (
     <section id="pricing" className="py-24 px-6 relative bg-black/50 backdrop-blur-md border-b border-white/[0.03] overflow-hidden">
@@ -142,9 +143,11 @@ export default function Pricing() {
                 whileHover={{ y: -10 }}
                 onMouseEnter={() => setHoveredCard(i)}
                 onMouseLeave={() => setHoveredCard(null)}
+                onClick={() => setClickedCard(clickedCard === i ? null : i)}
                 className={cn(
-                  "relative group flex flex-col p-[1px] bg-gradient-to-b from-white/10 via-white/[0.05] to-transparent rounded-[32px] transition-all duration-700 hover:from-white/20 hover:scale-[1.01] overflow-hidden",
-                  plan.recommended && "from-accent/30 hover:from-accent/50"
+                  "relative group flex flex-col p-[1px] bg-gradient-to-b from-white/10 via-white/[0.05] to-transparent rounded-[32px] transition-all duration-700 hover:from-white/20 hover:scale-[1.01] overflow-hidden cursor-pointer select-none",
+                  plan.recommended && "from-accent/30 hover:from-accent/50",
+                  (hoveredCard === i || clickedCard === i) && "from-white/35 scale-[1.01]"
                 )}
               >
                 {/* Shine effect on hover */}
@@ -195,7 +198,7 @@ export default function Pricing() {
 
                     <motion.div
                       initial="collapsed"
-                      animate={hoveredCard === i ? "open" : "collapsed"}
+                      animate={(hoveredCard === i || clickedCard === i) ? "open" : "collapsed"}
                       variants={{
                         open: { 
                           opacity: 1, 
@@ -231,14 +234,23 @@ export default function Pricing() {
                       ))}
                     </motion.div>
 
-                    {hoveredCard !== i && (
+                    {hoveredCard !== i && clickedCard !== i ? (
                       <motion.div 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-[10px] text-[#06b6d4] font-bold uppercase tracking-wider pt-2 flex items-center gap-1.5 select-none animate-pulse"
+                        className="text-[10px] text-accent/80 font-bold uppercase tracking-wider pt-2 flex items-center gap-1.5 select-none animate-pulse"
                       >
                         <Plus className="w-3 h-3" />
-                        <span>Hover to reveal {plan.features.length - halfLength} more features</span>
+                        <span>Click or hover to reveal {plan.features.length - halfLength} more features</span>
+                      </motion.div>
+                    ) : (
+                      <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-[10px] text-white/30 font-bold uppercase tracking-wider pt-2 flex items-center gap-1.5 select-none"
+                      >
+                        <span className="inline-block w-1 h-1 rounded-full bg-accent animate-pulse" />
+                        <span>Click anywhere on card to collapse</span>
                       </motion.div>
                     )}
                   </div>

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import Navbar from "@/src/components/Navbar";
 import Hero from "@/src/components/Hero";
@@ -78,23 +78,48 @@ export default function App() {
 }
 
 function CursorGlow() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
   const [hasHover, setHasHover] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(hover: hover)");
     setHasHover(mediaQuery.matches);
 
+    let rafId: number;
+    let currentX = -1000;
+    let currentY = -1000;
+    let targetX = -1000;
+    let targetY = -1000;
+    let initialMove = false;
+
+    const updatePosition = () => {
+      if (containerRef.current) {
+        if (!initialMove && targetX !== -1000) {
+          currentX = targetX;
+          currentY = targetY;
+          initialMove = true;
+        } else {
+          currentX += (targetX - currentX) * 0.08;
+          currentY += (targetY - currentY) * 0.08;
+        }
+        containerRef.current.style.background = `radial-gradient(550px circle at ${currentX}px ${currentY}px, rgba(255, 255, 255, 0.035), transparent 80%)`;
+      }
+      rafId = requestAnimationFrame(updatePosition);
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      targetX = e.clientX;
+      targetY = e.clientY;
     };
 
     if (mediaQuery.matches) {
       window.addEventListener("mousemove", handleMouseMove);
+      rafId = requestAnimationFrame(updatePosition);
     }
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -102,9 +127,10 @@ function CursorGlow() {
 
   return (
     <div
+      ref={containerRef}
       className="fixed inset-0 pointer-events-none z-50 overflow-hidden"
       style={{
-        background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.035), transparent 80%)`,
+        background: "radial-gradient(550px circle at -1000px -1000px, rgba(255, 255, 255, 0.035), transparent 80%)",
       }}
     />
   );

@@ -15,7 +15,7 @@ uniform vec3 u_color; // <-- The new color uniform
 
 float rnd(vec2 p){p=fract(p*vec2(12.9898,78.233));p+=dot(p,p+34.56);return fract(p.x*p.y);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);return mix(mix(rnd(i),rnd(i+vec2(1,0)),u.x),mix(rnd(i+vec2(0,1)),rnd(i+1.),u.x),u.y);}
-float fbm(vec2 p){float t=.0,a=1.;for(int i=0;i<5;i++){t+=a*noise(p);p*=mat2(1,-1.2,.2,1.2)*2.;a*=.5;}return t;}
+float fbm(vec2 p){float t=.0,a=1.;for(int i=0;i<2;i++){t+=a*noise(p);p*=mat2(1,-1.2,.2,1.2)*2.;a*=.5;}return t;}
 
 void main(){
   vec2 uv=(FC-.5*R)/R.y;
@@ -26,9 +26,11 @@ void main(){
   float n=fbm(uv*.28-vec2(T*.01,0));
   n=noise(uv*3.+n*2.);
 
-  col.r-=fbm(uv+vec2(0,T*.015)+n);
-  col.g-=fbm(uv*1.003+vec2(0,T*.015)+n+.003);
-  col.b-=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
+  float f1 = fbm(uv+vec2(0,T*.015)+n);
+  float f2 = fbm(uv*1.004+vec2(0,T*.015)+n+.004);
+  col.r-=f1;
+  col.g-=f2;
+  col.b-=mix(f1, f2, 1.5);
 
   // KEY CHANGE: Instead of mixing with white (vec3(1)), we mix with our custom.
   // This tints the brightest parts of the noise with the color provided by the user.
@@ -68,10 +70,11 @@ void main(){gl_Position=position;}`;
   }
 
   updateScale() {
-    const dpr = Math.max(1, window.devicePixelRatio);
+    // Cap DPR at 1.0 and scale down resolution slightly (0.75x) for extremely fast fluid rendering on any screen.
+    const dpr = Math.min(1.0, window.devicePixelRatio || 1) * 0.75;
     const { innerWidth: width, innerHeight: height } = window;
-    this.canvas.width = width * dpr;
-    this.canvas.height = height * dpr;
+    this.canvas.width = Math.floor(width * dpr);
+    this.canvas.height = Math.floor(height * dpr);
     this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
   }
 
@@ -176,8 +179,18 @@ export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
         window.addEventListener('resize', handleResize);
         
         let animationFrameId: number;
+        let isVisible = true;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            isVisible = entry.isIntersecting;
+        }, { threshold: 0.01 });
+
+        observer.observe(canvas);
+        
         const loop = (now: number) => {
-            renderer.render(now);
+            if (isVisible) {
+                renderer.render(now);
+            }
             animationFrameId = requestAnimationFrame(loop);
         };
         loop(0);
@@ -185,6 +198,7 @@ export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
         return () => {
             window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(animationFrameId);
+            observer.disconnect();
             renderer.reset(); 
         };
     }, []);

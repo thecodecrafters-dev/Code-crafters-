@@ -30,7 +30,10 @@ export default function LiquidBackground() {
           repeat: Infinity,
           ease: "linear",
         }}
-        className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-white/5 blur-[120px]"
+        className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%)"
+        }}
       />
       
       <motion.div
@@ -43,7 +46,10 @@ export default function LiquidBackground() {
           repeat: Infinity,
           ease: "linear",
         }}
-        className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] rounded-full bg-accent/10 blur-[150px]"
+        className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)"
+        }}
       />
 
       {/* Grid Pattern Mesh - Extremely subtle */}
