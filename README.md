@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/readme-banner.svg" alt="CodeCrafters — You Imagine. We Build." width="100%" />
+  <img src="./docs/readme-banner.png" alt="CodeCrafters" width="100%" />
 </p>
 
 <p align="center">
