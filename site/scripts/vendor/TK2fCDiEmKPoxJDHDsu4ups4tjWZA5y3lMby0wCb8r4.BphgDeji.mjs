@@ -552,7 +552,7 @@ var Ot,
                           className: `framer-styles-preset-1u0avwx`,
                           "data-styles-preset": `llwEzCpG3`,
                           style: { "--framer-text-alignment": `center` },
-                          children: `View Pricing Plans`,
+                          children: `Why CodeCrafters`,
                         }),
                       }),
                       className: `framer-sctd94`,
@@ -3101,15 +3101,15 @@ e(() => {
                                         a(j, {
                                           links: [
                                             {
-                                              href: { webPageId: `V2Ho_ZYv2` },
+                                              href: { hash: `about-us`, webPageId: `V2Ho_ZYv2` },
                                               implicitPathVariables: void 0,
                                             },
                                             {
-                                              href: { webPageId: `V2Ho_ZYv2` },
+                                              href: { hash: `about-us`, webPageId: `V2Ho_ZYv2` },
                                               implicitPathVariables: void 0,
                                             },
                                             {
-                                              href: { webPageId: `V2Ho_ZYv2` },
+                                              href: { hash: `about-us`, webPageId: `V2Ho_ZYv2` },
                                               implicitPathVariables: void 0,
                                             },
                                           ],
@@ -3194,15 +3194,15 @@ e(() => {
                                         a(j, {
                                           links: [
                                             {
-                                              href: { webPageId: `tOFmQXseb` },
+                                              href: { hash: `services`, webPageId: `V2Ho_ZYv2` },
                                               implicitPathVariables: void 0,
                                             },
                                             {
-                                              href: { webPageId: `tOFmQXseb` },
+                                              href: { hash: `services`, webPageId: `V2Ho_ZYv2` },
                                               implicitPathVariables: void 0,
                                             },
                                             {
-                                              href: { webPageId: `tOFmQXseb` },
+                                              href: { hash: `services`, webPageId: `V2Ho_ZYv2` },
                                               implicitPathVariables: void 0,
                                             },
                                           ],

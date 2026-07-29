@@ -1150,9 +1150,18 @@ var Ut,
                           children: [
                             d(H, {
                               links: [
-                                { href: { webPageId: `OuAbnO_az` }, implicitPathVariables: void 0 },
-                                { href: { webPageId: `OuAbnO_az` }, implicitPathVariables: void 0 },
-                                { href: { webPageId: `OuAbnO_az` }, implicitPathVariables: void 0 },
+                                {
+                                  href: { hash: `about-us`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
+                                {
+                                  href: { hash: `about-us`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
+                                {
+                                  href: { hash: `about-us`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
                               ],
                               children: (e) =>
                                 d(R, {
@@ -1236,9 +1245,18 @@ var Ut,
                               }),
                             d(H, {
                               links: [
-                                { href: { webPageId: `tOFmQXseb` }, implicitPathVariables: void 0 },
-                                { href: { webPageId: `tOFmQXseb` }, implicitPathVariables: void 0 },
-                                { href: { webPageId: `tOFmQXseb` }, implicitPathVariables: void 0 },
+                                {
+                                  href: { hash: `services`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
+                                {
+                                  href: { hash: `services`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
+                                {
+                                  href: { hash: `services`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
                               ],
                               children: (e) =>
                                 d(R, {
@@ -1322,9 +1340,18 @@ var Ut,
                               }),
                             d(H, {
                               links: [
-                                { href: { webPageId: `Dlfx5P74i` }, implicitPathVariables: void 0 },
-                                { href: { webPageId: `Dlfx5P74i` }, implicitPathVariables: void 0 },
-                                { href: { webPageId: `Dlfx5P74i` }, implicitPathVariables: void 0 },
+                                {
+                                  href: { hash: `our-vision`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
+                                {
+                                  href: { hash: `our-vision`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
+                                {
+                                  href: { hash: `our-vision`, webPageId: `V2Ho_ZYv2` },
+                                  implicitPathVariables: void 0,
+                                },
                               ],
                               children: (e) =>
                                 d(R, {
@@ -1381,7 +1408,7 @@ var Ut,
                                       id: `KMH09p_2y`,
                                       layoutId: `KMH09p_2y`,
                                       name: `Footer link`,
-                                      RHbIzuPrs: `Project`,
+                                      RHbIzuPrs: `Our Vision`,
                                       width: `100%`,
                                       y2ltfNPLF: e[0],
                                       ...q(
@@ -1409,15 +1436,15 @@ var Ut,
                             d(H, {
                               links: [
                                 {
-                                  href: { hash: `:vPXJMDuCq`, webPageId: `V2Ho_ZYv2` },
+                                  href: { hash: `contact`, webPageId: `V2Ho_ZYv2` },
                                   implicitPathVariables: void 0,
                                 },
                                 {
-                                  href: { hash: `:vPXJMDuCq`, webPageId: `V2Ho_ZYv2` },
+                                  href: { hash: `contact`, webPageId: `V2Ho_ZYv2` },
                                   implicitPathVariables: void 0,
                                 },
                                 {
-                                  href: { hash: `:vPXJMDuCq`, webPageId: `V2Ho_ZYv2` },
+                                  href: { hash: `contact`, webPageId: `V2Ho_ZYv2` },
                                   implicitPathVariables: void 0,
                                 },
                               ],
@@ -1476,7 +1503,7 @@ var Ut,
                                       id: `t0OIawiEY`,
                                       layoutId: `t0OIawiEY`,
                                       name: `Footer link`,
-                                      RHbIzuPrs: `Pricing Plan`,
+                                      RHbIzuPrs: `Contact`,
                                       width: `100%`,
                                       y2ltfNPLF: e[0],
                                       ...q(
@@ -2232,7 +2259,7 @@ var Ut,
                                     "--framer-text-alignment": `center`,
                                     "--framer-text-color": `var(--extracted-r6o4lv, var(--token-777d4a96-6f89-4dc7-ab72-03827dee2e5b, rgb(107, 114, 128)))`,
                                   },
-                                  children: `© 2026 Agenio. All Rights Reserved`,
+                                  children: `© 2026 CodeCrafters. All Rights Reserved`,
                                 }),
                               }),
                               className: `framer-9qddox`,
