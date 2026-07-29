@@ -532,7 +532,7 @@ function ue(e, t) {
     favicon: `https://framerusercontent.com/assets/1ThVrhMZjTKhHTNQKf2b5lDY.png`,
     robots: `max-image-preview:large`,
     socialImage: `https://framerusercontent.com/assets/Wqo1gDJ2spyalp3OsObh1QBciSw.png`,
-    title: `AgencyIO - AI Agency Framer Template `,
+    title: `CodeCrafters — You Imagine, We Build`,
   };
 }
 var de = e(() => {});
